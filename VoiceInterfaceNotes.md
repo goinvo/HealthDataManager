@@ -69,56 +69,66 @@ WebMD has a Alexa skill for users to ask about symptoms, treatments, side effect
 50% of its reviews are 1 star. Most complaints were about the voice recognition and inability to understand drug names.
 
 #  5. VUI Design
+**Google Developers site**
+https://developers.google.com/actions/design/principles
 
-Voice is an efficient input modality: it allows users to give commands to the system quickly, on their own terms. Hands-free control lets users multitask, and effective natural language processing bypasses the need for complex navigation menus, at least for familiar tasks and known commands.
+Google goes in very thoroughly on how to design good conversation UIs. 
+* Optimize for speed, simplicity, and hands-free interactions. 
+* Develop a persona for your voice. If you don’t, the audience will themselves.
+* To remain conversational, it is important to have greetings and goodbyes. 
+* UI Do’s and Don’ts: https://developers.google.com/actions/design/principles#core_principles
 
-A screen is an efficient output modality: it allows systems to display a large amount of information at the same time and thus reduce the burden on users’ memory. Visual scanning is faster than the sequential information access enforced by voice output. It can also efficiently convey system status and bridge the Gulf of Execution by providing visual signifiers to suggest possible commands.
+Sourced from: https://www.nngroup.com/articles/voice-first/
+
+"Voice is an efficient input modality: it allows users to give commands to the system quickly, on their own terms. Hands-free control lets users multitask, and effective natural language processing bypasses the need for complex navigation menus, at least for familiar tasks and known commands.
+
+A screen is an efficient output modality: it allows systems to display a large amount of information at the same time and thus reduce the burden on users’ memory. Visual scanning is faster than the sequential information access enforced by voice output. It can also efficiently convey system status and bridge the Gulf of Execution by providing visual signifiers to suggest possible commands."
 
 **Missing Functionality**
 
-Too often, the voice agent can initiate only the first step of a task, and any subsequent steps require the user to shift to a touch interaction style. For example, Siri will execute a web-search query or open the Apple News application in response to a voice command, but the user must then tap the screen to select a search result or access a news story. Google Assistant also requires screen input to move beyond the first step of many searches.
+"Too often, the voice agent can initiate only the first step of a task, and any subsequent steps require the user to shift to a touch interaction style. For example, Siri will execute a web-search query or open the Apple News application in response to a voice command, but the user must then tap the screen to select a search result or access a news story. Google Assistant also requires screen input to move beyond the first step of many searches.
 * We want voice to produce the action throughout
 * We do not want to make voice just replace something that can be easily typed into a search engine
-* There are certain situations where a user may want to use voice and situations where they would not (ie: revealing private info)
+* There are certain situations where a user may want to use voice and situations where they would not (ie: revealing private info)"
 
 **Integrating Voice and Screen Output From the Ground Up**
 
-Some interesting examples of the innovation driven by the voice-first approach are already evident in Echo Show’s interface:
+"Some interesting examples of the innovation driven by the voice-first approach are already evident in Echo Show’s interface:
 * **Sequential numbering of search results**, which was a convention common in the early days of web search, but long since abandoned as unnecessary in a visual list. On a voice-first device, the numbers serve the important function of providing unique and efficient verbal ‘handles’ which let users efficiently select items.
 * **Randomly displayed suggested commands**, such as Try “Alexa, play Al Green” or Try “Alexa, what’s your favorite word?” This technique is similar to methods used by both Siri (Things you can ask me) and Google Assistant (Explore), but differs in that these tips are displayed not just in a dedicated educational area, but instead at the bottom of the home screen,  various search-results screens, and the music-player screen. (This ambient education mechanism can definitely entice new users to spontaneously engage with the device. But the random contents means the tips are often uninteresting, and annoying to experienced users because they cannot be turned off.)
-* **Immersive displays of rich, interactive content**, which are normal on traditional web and mobile GUIs but not on previous screen-first voice interfaces. For example, recipe results on Echo Show include detailed screens showing ingredients, directions, and a demonstration video — all accessible via voice commands.
+* **Immersive displays of rich, interactive content**, which are normal on traditional web and mobile GUIs but not on previous screen-first voice interfaces. For example, recipe results on Echo Show include detailed screens showing ingredients, directions, and a demonstration video — all accessible via voice commands."
 
 # 6. Designing for Accessibility
 
-https://uxdesign.cc/tips-for-accessibility-in-conversational-interfaces-8e11c58b31f6
+Sourced from: https://uxdesign.cc/tips-for-accessibility-in-conversational-interfaces-8e11c58b31f6
 
 **Deaf or Hard of Hearing**
 
-People who are deaf or hard of hearing are impacted the greatest by shifting to a mode of communication that relies on voice and they will likely need multimodal interfaces.
+"People who are deaf or hard of hearing are impacted the greatest by shifting to a mode of communication that relies on voice and they will likely need multimodal interfaces.
 * **Allow volume control**. A user must be able to turn the volume of a device both up and down. Users who are hard of hearing may need to turn devices up to hear and those with hearing assistive technology may need to turn it down.
 * **Provide alternatives to speech-only interactions (multimodal)**. Users who are deaf may not converse using speech directly. To include these users, provide a multimodal experience.
-* **Consider conventions of transmitting to hearing devices**. Users who are hard of hearing may wear devices that can connect via Bluetooth, FM or other means. Connecting to their assistive technology may create desired experiences for everyone.
+* **Consider conventions of transmitting to hearing devices**. Users who are hard of hearing may wear devices that can connect via Bluetooth, FM or other means. Connecting to their assistive technology may create desired experiences for everyone."
 
 **Cognitive Disabilities**
 
-Many cognitive disabilities affect areas of the brain that process voice interactions. This broad range of disabilities must be understood to create a great experience for everyone.
+"Many cognitive disabilities affect areas of the brain that process voice interactions. This broad range of disabilities must be understood to create a great experience for everyone.
 * **Create a linear, time-efficient architecture**. When architecting conversations, make it easy for the user to understand the navigation and not get lost or trapped. Architecture is perhaps more important in an invisible interface than in one that is graphical.
 * **Provide context**. Build the lexicon for your conversation with the context in mind. Many terms can be ambiguous and confuse users, especially those with cognitive disabilities. Then, make sure to add context to conversation to make possible responses clear for the user.
 * **Normalize language**. DO use literal language, short and simple sentences, and full-length words. DON’T use ambiguous language, sarcasm, technical terms, abbreviations and acronyms.
 * **Put important information first or last**. Put the most often used choices at the beginning and allow a user to quickly answer, or put them at the end so the user doesn’t have to remember all the choices. Avoid long menu options and don’t combine multiple ideas into one question.
-* **Note:** Conversational interfaces have been extremely helpful for people with dyslexia, allowing the users to interact without written text.
+* **Note:** Conversational interfaces have been extremely helpful for people with dyslexia, allowing the users to interact without written text."
 
 **Physical Disabilities**
 
-Some physical disabilities may make it difficult for users to speak clearly.
+"Some physical disabilities may make it difficult for users to speak clearly.
 * **Understand shaky and broken speech**. This may be out of your control, but realize that many users with physical disabilities have shaky and broken speech — especially those whose primary language is different than the system.
 * **Provide alternatives to speech-only interactions**. Similar to users who are deaf, a user who is unable to speak needs an alternative way to interact.
-* **Design appropriate pauses in listening**. Allow a user to pause and gather thoughts when speaking. Don’t be hasty to reply and tell the user that the system does not understand.
+* **Design appropriate pauses in listening**. Allow a user to pause and gather thoughts when speaking. Don’t be hasty to reply and tell the user that the system does not understand."
 
 **Blind and Low Vision**
 
-* **Create a time-efficient interaction**. Just as we try to limit the number of clicks a user must take to complete an action, limit the amount of voice interaction needed.
+"* **Create a time-efficient interaction**. Just as we try to limit the number of clicks a user must take to complete an action, limit the amount of voice interaction needed.
 * **Keep messages short and allow interruptions**. Don’t force a user to listen to long messages or lists of choices without a way to continue forward.
 * **Let users control the speech rate**. “Many blind users of screen readers can listen to text as exceedingly fast speeds.” (Pearl, 2016) Designers should recognize this super power and design accordingly.
-Make it discoverable. Consider how the ability to speak with a device is conveyed. If it is expected that a user speaks to a device, make sure that user knows it exists and can open a dialog.
+Make it discoverable. Consider how the ability to speak with a device is conveyed. If it is expected that a user speaks to a device, make sure that user knows it exists and can open a dialog."
 
