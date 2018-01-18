@@ -41,9 +41,9 @@ Keyword must be said for each statement by the user, this can become annoying ov
 # 3. Development references 
 
 Possible development tools:
-* Amazon Alexa SDK
-* Google Assistant SDK 
-* Mycroft
+* Amazon Alexa SDK: https://developer.amazon.com/alexa
+* Google Assistant SDK: https://developers.google.com/actions/reference/nodejs/AssistantApp
+* Mycroft: https://mycroft.ai/documentation/
 
 # 4. Healthcare and Voice
 
@@ -69,10 +69,10 @@ WebMD has a Alexa skill for users to ask about symptoms, treatments, side effect
 50% of its reviews are 1 star. Most complaints were about the voice recognition and inability to understand drug names.
 
 #  5. VUI Design
-**Google Developers site**
+**Google Developers site:**
 https://developers.google.com/actions/design/principles
 
-Google goes in very thoroughly on how to design good conversation UIs. 
+Google goes in very thoroughly on how to design good conversation UIs. I recommend everyone to read. 
 * Optimize for speed, simplicity, and hands-free interactions. 
 * Develop a persona for your voice. If you don’t, the audience will themselves.
 * To remain conversational, it is important to have greetings and goodbyes. 
