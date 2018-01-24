@@ -1,4 +1,4 @@
-**Based on SHR:** <br>
+**Based on SHR:** http://standardhealthrecord.org/shr/index_all_elements.html<br>
 ● **Allergy** _recent occurrence, irritant, reactions, ..._ <br>
 ● **Behavior** _alcohol use, diet followed, exercise hours per week, drug use, sleep quality, …_ <br>
 ● **Careplan** _care team, goal, objective, planned activities, ..._ <br>
