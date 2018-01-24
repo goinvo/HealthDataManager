@@ -1,4 +1,4 @@
-**Based on SHR:** http://standardhealthrecord.org/shr/index_all_elements.html<br>
+**Based on SHR [1]:**<br>
 ● **Allergy** _recent occurrence, irritant, reactions, ..._ <br>
 ● **Behavior** _alcohol use, diet followed, exercise hours per week, drug use, sleep quality, …_ <br>
 ● **Careplan** _care team, goal, objective, planned activities, ..._ <br>
@@ -23,10 +23,14 @@ surgical procedure, ..._<br>
 ● **Vital** _blood pressure, body height, body mass index, body weight, heart rate, respiratory
 rate, ..._<br>
 
-**Additional sections [1]:**<br>
+**Additional sections [2]:**<br>
 ● **Imaging** _x-ray_<br>
 ● **Directive**<br>
 ● **Surgical** _history dates of operations, operative reports, …_<br>
 ● **Pathology** _biopsy results, ..._<br>
 ● **Obstetric history** _prior pregnancies, complications of prior pregnancies, ..._<br>
 ● **Test results** _blood tests, imaging, pathology, …_
+
+**References**
+1. http://standardhealthrecord.org/shr/index_all_elements.html
+2. https://en.wikipedia.org/wiki/Medical_record#Contents
