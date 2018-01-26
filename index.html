@@ -66,7 +66,7 @@ this.value = '';
     }
 function send() {
         var text = $("#input").val();
-    conversation.push("Me: " + text + '\r\n');
+    conversation.push("\nUser: " + text + '\r\n\n');
         $.ajax({
             type: "POST",
             url: baseUrl + "query?v=20150910",
@@ -79,7 +79,19 @@ function send() {
             success: function(data) {
                 var respText = data.result.fulfillment.speech;
                 console.log("Respuesta: " + respText);
-                setResponse(respText);
+								var shr = data.result.parameters
+								for (x in data.result.parameters){
+              		if (data.result.parameters[x].length != 0){
+                  	if (x==='height' || x === 'weight' ||x === 'age' ){
+                    	conversation.push(x + ": " + data.result.parameters[x].amount + '\r\n')
+                      conversation.push(x + ": " + data.result.parameters[x].unit + '\r\n')
+                    } else {
+                  	conversation.push(x + ": " + data.result.parameters[x]+ '\r\n')
+
+                    }
+                  }
+        }
+               setResponse(respText);
                 $("#response").scrollTop($("#response").height());
             },
             error: function() {
@@ -89,8 +101,9 @@ function send() {
     }
     function setResponse(val) {
 	    //Edit "AI: " to change name
-        conversation.push("AI: " + val + '\r\n');
+        conversation.push("\nDialogFlow: " + val + '\r\n');
         $("#response").text(conversation.join(""));
+
     }
     var conversation = [];
 </script>
