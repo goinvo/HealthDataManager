@@ -1,6 +1,7 @@
 <html>
 <head>
 	<title>API Example</title>
+
 	<!--
 	This is currently a test to show a prototype of voice functionality and data retrieval.
 	Sourced from API.ai JS + HTML SDK documentation.
@@ -80,17 +81,48 @@ function send() {
                 var respText = data.result.fulfillment.speech;
                 console.log("Respuesta: " + respText);
 								var shr = data.result.parameters
-								for (x in data.result.parameters){
+             		for (x in data.result.parameters){
               		if (data.result.parameters[x].length != 0){
                   	if (x==='height' || x === 'weight' ||x === 'age' ){
+                    	if(x == "height"){
+                    var hvalue = data.result.parameters[x].amount;
+                    var hunit = data.result.parameters[x].unit;
+                    }
+                    if(x == "weight"){
+                    var wvalue = data.result.parameters[x].amount;
+                    var wunit = data.result.parameters[x].unit;
+                    }
                     	conversation.push(x + ": " + data.result.parameters[x].amount + '\r\n')
                       conversation.push(x + ": " + data.result.parameters[x].unit + '\r\n')
                     } else {
-                  	conversation.push(x + ": " + data.result.parameters[x]+ '\r\n')
 
+                    if (x == "phoneNumber"){
+                      var phn =data.result.parameters[x];
+                      }
+                      if(x == "birthday"){
+                      var bday = data.result.parameters[x];
+                      }
+                      if (x == "sex"){
+                      var sex = data.result.parameters[x];
+                      }
+                  	conversation.push(x + ": " + data.result.parameters[x]+ '\r\n')
                     }
                   }
+                 var obj = {
+                 "telecom": [{
+         					 "system": "phone",
+        				   "value": phn,
+         					 "use": "home"
+        					}
+     						 ],
+                 "gender": sex,
+      					"birthDate": bday };
+								var myJSON = JSON.stringify(obj);
+                  if(data.result.actionIncomplete == false){
+        						conversation.push("\r\n" +myJSON+ '\r\n')
+        					}
         }
+
                setResponse(respText);
                 $("#response").scrollTop($("#response").height());
             },
@@ -103,7 +135,6 @@ function send() {
 	    //Edit "AI: " to change name
         conversation.push("\nDialogFlow: " + val + '\r\n');
         $("#response").text(conversation.join(""));
-
     }
     var conversation = [];
 </script>
@@ -120,6 +151,5 @@ function send() {
   <textarea readOnly = true; id="response" cols="40" rows="20" style="resize: none;"></textarea>
   <br />
     <input id="input" type="text" placeholder="Type here..." autocomplete="off" /><button id="rec">Speak</button>
-	</div>
+  </div>
 </body>
-</html>
