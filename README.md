@@ -4,6 +4,7 @@ This is an application that intakes ~50 elements of patient information through 
 ## Current Work
 Currently, the project intakes 11 elements of patient information through voice and print three of those elements in SHR format. Voice data is transcribed and parsed using [DialogFlow](https://dialogflow.com) which returns a JSON. The JSON is then parsed for elements of interest and for the application's speech functions. 
 Demo of Current Prototype")
+
 [![IMAGE ALT TEXT](http://img.youtube.com/vi/KuPtWFArkU0/0.jpg)](http://www.youtube.com/watch?v=KuPtWFArkU0 "Video Title")
 
 
@@ -14,6 +15,7 @@ Demo of Current Prototype")
 
 ## Core Contributors
 Founders/Designers: [GoInvo](http://www.goinvo.com/), [hello@goinvo.com](mailto:hello@goinvo.com)
+
 We believe that healthcare should be intuitive and accessible. Contact us with your questions and comments.
 
 ## License
