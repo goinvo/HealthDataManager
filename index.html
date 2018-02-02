@@ -4,7 +4,8 @@
 
 	<!--
 	This is currently a test to show a prototype of voice functionality and data retrieval.
-	Sourced from API.ai JS + HTML SDK documentation.
+	Altered from API.ai JS + HTML SDK documentation and this gist from github: 
+	https://gist.github.com/Dottenpixel/78d9a5487b4aeef32659a017058f75b9
 	Must be run on an http or https server to allow microphone access
 -->
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -108,7 +109,9 @@ function send() {
                   	conversation.push(x + ": " + data.result.parameters[x]+ '\r\n')
                     }
                   }
-                 var obj = {
+              
+        }
+ var obj = {
                  "telecom": [{
          					 "system": "phone",
         				   "value": phn,
@@ -121,8 +124,6 @@ function send() {
                   if(data.result.actionIncomplete == false){
         						conversation.push("\r\n" +myJSON+ '\r\n')
         					}
-        }
-
                setResponse(respText);
                 $("#response").scrollTop($("#response").height());
             },
@@ -153,3 +154,4 @@ function send() {
     <input id="input" type="text" placeholder="Type here..." autocomplete="off" /><button id="rec">Speak</button>
   </div>
 </body>
+</html>
