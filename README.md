@@ -22,7 +22,8 @@ This is an example SHR JSON that we are trying to output. The entire SHR JSON ca
 
 
 ## How to Use
-Currently, all code exists in the index.html file. To run the application, simply download the file and run the code in the environment of your choosing. Personally, I have been using [JSFiddle] (https://jsfiddle.net/) for running and debugging. 
+Currently, all code exists in the index.html file. To run the application, simply download the file and run the code in the environment of your choosing. Personally, I have been using [JSFiddle] (https://jsfiddle.net/) for running and debugging.
+IMPORTANT: code must be run on an http or https server to allow microphone access. Localhost also works but just dragging the HTML file into a browser does not. This due to how security access to microphones are allowed.
 
 ## Future Goals 
 - currently the SHR format is hardcoded, I would like to find a way to more easily generate SHR JSON
