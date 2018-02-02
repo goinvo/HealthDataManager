@@ -2,16 +2,17 @@
 This is an application that intakes ~50 elements of patient information through a voice user interface. These data elements are then configured into [Standard Health Record](http://standardhealthrecord.org) format. The data is displayed visually for predicting or managing health. 
 
 ## Current Work
-Currently, the project intakes 11 elements of patient information through voice and print three of those elements in SHR format. Voice data is transcribed and parsed using [DialogFlow](https://dialogflow.com) which returns a JSON. The JSON is then parsed for elements of interest and for the application's speech functions. 
+Currently, the project intakes 11 elements of patient information through voice and prints three of those elements in SHR format. Voice data is transcribed and parsed using [DialogFlow](https://dialogflow.com) which returns a JSON. The JSON is then parsed for elements of interest and for the application's speech functions. 
 Demo of Current Prototype")
 
 [![DEMO](https://img.youtube.com/vi/KuPtWFArkU0/0.jpg)](https://www.youtube.com/watch?v=KuPtWFArkU0 "DEMO")
 
 
-
+## How to Use
+Currently, all code exists in the index.html file. To run the application, simply download the file and run the code in the environment of your choosing. Personally, I have been using [JSFiddle] (https://jsfiddle.net/) for running and debugging. 
 
 ## Future Goals 
-- currently the SHR format is hardcoded, would like to find a way to more easily generate SHR JSON
+- currently the SHR format is hardcoded, I would like to find a way to more easily generate SHR JSON
 - 1 model/algorithm to help with predicting or managing my health.
 - HIPAA compliant (using TrueVault)
 
