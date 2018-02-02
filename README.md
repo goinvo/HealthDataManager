@@ -3,9 +3,22 @@ This is an application that intakes ~50 elements of patient information through 
 
 ## Current Work
 Currently, the project intakes 11 elements of patient information through voice and prints three of those elements in SHR format. Voice data is transcribed and parsed using [DialogFlow](https://dialogflow.com) which returns a JSON. The JSON is then parsed for elements of interest and for the application's speech functions. 
-Demo of Current Prototype")
 
-[![DEMO](https://img.youtube.com/vi/KuPtWFArkU0/0.jpg)](https://www.youtube.com/watch?v=KuPtWFArkU0 "DEMO")
+This is an image of the current prototype interface. <a href="https://www.youtube.com/watch?v=KuPtWFArkU0">Here</a> is a video demo of the application.
+
+
+
+ <img src="images/terminal.png" alt="IMAGE ALT TEXT HERE" width="280" height="280" border="10" />
+
+
+
+
+
+This is an example SHR JSON that we are trying to output. The entire SHR JSON can be viewed in the Patient.JSON file in the github repo. The highlighted portion illustrates the current JSON that is outputted.
+
+
+<img src="images/shr.png" alt="IMAGE ALT TEXT HERE" width="280" height="320" border="10" />
+
 
 
 ## How to Use
