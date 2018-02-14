@@ -11,7 +11,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script type="text/javascript">
-    var accessToken ="c2fa6f17d27c4f46adce7dd529659329";
+    var accessToken ="745b2a6d68e24e1a93a92cf26643b07b";
     var baseUrl = "https://api.dialogflow.com/v1/";
     $(document).ready(function() {
         $("#input").keypress(function(event) {
@@ -96,33 +96,116 @@ function send() {
                     	conversation.push(x + ": " + data.result.parameters[x].amount + '\r\n')
                       conversation.push(x + ": " + data.result.parameters[x].unit + '\r\n')
                     } else {
-
-                    if (x == "phoneNumber"){
-                      var phn =data.result.parameters[x];
+                    if (x == "waist"){
+                      var waist =data.result.parameters[x];
                       }
-                      if(x == "birthday"){
-                      var bday = data.result.parameters[x];
+                      if(x == "drinks"){
+                      var alcohol = data.result.parameters[x];
                       }
-                      if (x == "sex"){
-                      var sex = data.result.parameters[x];
+                      if (x == "sleep"){
+                      var sleep = data.result.parameters[x];
+                      }
+                      if (x == "exercise"){
+                      var exercise = data.result.parameters[x];
+                      }
+                      if (x == "cigarettes"){
+                      var smoking= data.result.parameters[x];
+                      }
+                      if (x == "happiness"){
+                      var happiness = data.result.parameters[x];
+                      }
+                      if (x == "glucose"){
+                      var glucose = data.result.parameters[x];
+                      }
+                      if (x == "LDL"){
+                      var LDL = data.result.parameters[x];
+                      }
+                      if (x == "HDL"){
+                      var HDL = data.result.parameters[x];
+                      }
+                      if (x == "diastolic"){
+                      var diastolic = data.result.parameters[x];
+                      }
+                      if (x == "systolic"){
+                      var systolic = data.result.parameters[x];
+                      }
+                      if (x == "pain"){
+                      var pain = data.result.parameters[x];
                       }
                   	conversation.push(x + ": " + data.result.parameters[x]+ '\r\n')
                     }
                   }
               
         }
+
+
+
  var obj = {
-                 "telecom": [{
-         					 "system": "phone",
-        				   "value": phn,
-         					 "use": "home"
-        					}
-     						 ],
-                 "gender": sex,
-      					"birthDate": bday };
+  "name" : "Sonin Juhan",
+  "gender" : "male",
+  "score_data" : [
+  {
+      "Weight"       : 14,
+      "value"     : wvalue
+   },
+   {
+      "LDL"       : 1,
+      "value"     : LDL
+   },
+   {
+      "HDL"       : 2,
+      "value"     : HDL
+   },
+   {
+      "Triglycerides" : 3,
+      "value"         : 140
+   },
+   {
+      "Sleep"     : 4,
+      "value"     : sleep
+   },
+   {
+      "Exercise"  : 5,
+      "value"     : exercise
+   },
+   {
+      "Happiness" : 6,
+      "value"     : happiness
+   },
+   {
+      "Glucose"   : 7,
+      "value"     : glucose
+   },
+   {
+      "Blood Pressure Systolic" : 8,
+      "value"     : systolic
+   },
+   {
+      "Blood Pressure Diastolic" : 9,
+      "value"     : diastolic
+   },
+   {
+      "Alcohol"   : 10,
+      "value"     : alcohol
+   },
+   {
+      "Smoking"   : 11,
+      "value"     : smoking
+   },
+   {
+      "Waist Circumference" : 12,
+      "value"     : waist
+   },
+   {
+      "Pain"      : 13,
+      "value"     : pain
+   }
+  ]
+};
 								var myJSON = JSON.stringify(obj);
                   if(data.result.actionIncomplete == false){
         						conversation.push("\r\n" +myJSON+ '\r\n')
+                    // currently this is pushing the JSON, its not printing or creating a new file
         					}
                setResponse(respText);
                 $("#response").scrollTop($("#response").height());
@@ -151,7 +234,8 @@ function send() {
 	<div class="bot">
   <textarea readOnly = true; id="response" cols="40" rows="20" style="resize: none;"></textarea>
   <br />
-    <input id="input" type="text" placeholder="Type here..." autocomplete="off" /><button id="rec">Speak</button>
+    <input id="input" type="text" hidden>
+    <button id="rec">Speak</button>
   </div>
 </body>
 </html>
