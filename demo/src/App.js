@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import VoiceRecognition from './VoiceRecognition';
 import './App.css';
+import Hgraph, { hGraphConvert, calculateHealthScore } from 'hgraph-react';
 
 const accessToken ="745b2a6d68e24e1a93a92cf26643b07b";
 const baseUrl = "https://api.dialogflow.com/v1/";
+
 
 class App extends Component {
 /*  render() {
@@ -24,12 +26,21 @@ class App extends Component {
 export default App;*/
   constructor (props) {
     super(props);
+
     this.state = {
       start: false,
       stop: false,
-      utterances: []
+      utterances: [],
+      patientData: []
 
     }
+  }
+
+  addPatientDataElement = (element) => {
+    const newData = this.state.patientData.map(d => d);
+    const convertedElement = hGraphConvert("male", element.metric, element);
+    newData.push(convertedElement);
+    this.setState({patientData: newData});
   }
 
   onEnd = () => {
@@ -57,10 +68,42 @@ export default App;*/
   		body: JSON.stringify({ query: utterance, lang: "en", sessionId: "somerandomthing" }),
     })
     .then((response) => response.json())
-    .then((responseJson) => console.log(responseJson))
+    .then((responseJson) => this.dialogflowToHgraph(responseJson))
     .catch((error) => console.error(error));
   }
 
+  dialogflowToHgraph = (responseJson) => {
+
+    const parameters = responseJson.result.parameters;
+
+    const keys = Object.keys(parameters);
+    const values = Object.values(parameters);
+    let newArray = [];
+
+    for (var i = 0; i < keys.length; i++) {
+      
+      if (values[i] !== "") {
+        newArray.push({
+
+          metric: keys[i].toString(),
+          value: parseInt(values[i])
+        });
+      }
+    }
+    newArray = newArray.map(metric => {
+
+      const convertedObj = hGraphConvert("male", metric.metric, metric);
+      convertedObj.id = metric.metric;
+      return convertedObj;
+    });
+    this.setState({patientData: newArray});
+  }
+
+  // <ul>
+  //   {this.state.utterances.map(utterance => {
+  //     return (<li>{utterance}</li>)
+  //   })}
+  // </ul>
   render () {
     return (
       <div>
@@ -75,11 +118,8 @@ export default App;*/
              stop={this.state.stop}
            />
          )}
-         <ul>
-           {this.state.utterances.map(utterance => {
-             return (<li>{utterance}</li>)
-           })}
-         </ul>
+
+         <Hgraph data={this.state.patientData}/>
       </div>
     )
   }
