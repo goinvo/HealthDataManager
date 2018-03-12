@@ -8,22 +8,7 @@ const baseUrl = "https://api.dialogflow.com/v1/";
 
 
 class App extends Component {
-/*  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
 
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
-}
-
-export default App;*/
   constructor (props) {
     super(props);
 
@@ -65,7 +50,7 @@ export default App;*/
           'Content-Type': "application/json; charset=utf-8",
           'Accept': "application/json"
   		},
-  		body: JSON.stringify({ query: utterance, lang: "en", sessionId: "somerandomthing" }),
+  		body: JSON.stringify({ query: utterance, lang: "en", sessionId: "somerandomstring" }),
     })
     .then((response) => response.json())
     .then((responseJson) => this.dialogflowToHgraph(responseJson))
@@ -81,29 +66,36 @@ export default App;*/
     let newArray = [];
 
     for (var i = 0; i < keys.length; i++) {
-      
       if (values[i] !== "") {
         newArray.push({
-
           metric: keys[i].toString(),
           value: parseInt(values[i])
         });
-      }
+      };
     }
     newArray = newArray.map(metric => {
-
-      const convertedObj = hGraphConvert("male", metric.metric, metric);
+      const convertedObj = hGraphConvert("female", metric.metric, metric);
       convertedObj.id = metric.metric;
       return convertedObj;
     });
-    this.setState({patientData: newArray});
+    var finalArray = this.state.patientData.concat(newArray);
+    const copiedArrayFromState = this.state.patientData.map(d => d);
+    // for each item in the response
+    newArray.map(item => {
+      // check if the item exists already in the existing state array
+      var found = copiedArrayFromState.findIndex(d => d.id === item.id);
+      console.log(found);
+      if (found !== -1) {
+        // if it does, just override the value
+        copiedArrayFromState[found].value = item.value;
+        console.log(copiedArrayFromState);
+        this.setState({patientData: copiedArrayFromState});
+      } else {
+        // if not, add it as before
+        this.setState({patientData: finalArray});
+      }
+    });
   }
-
-  // <ul>
-  //   {this.state.utterances.map(utterance => {
-  //     return (<li>{utterance}</li>)
-  //   })}
-  // </ul>
   render () {
     return (
       <div>
@@ -118,11 +110,9 @@ export default App;*/
              stop={this.state.stop}
            />
          )}
-
          <Hgraph data={this.state.patientData}/>
       </div>
     )
   }
 }
-
 export default App;
