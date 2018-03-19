@@ -2,10 +2,8 @@ import React, { Component } from 'react';
 import VoiceRecognition from './VoiceRecognition';
 import './App.css';
 import Hgraph, { hGraphConvert, calculateHealthScore } from 'hgraph-react';
-
 const accessToken ="745b2a6d68e24e1a93a92cf26643b07b";
 const baseUrl = "https://api.dialogflow.com/v1/";
-
 
 class App extends Component {
 
@@ -16,7 +14,8 @@ class App extends Component {
       start: false,
       stop: false,
       utterances: [],
-      patientData: []
+      patientData: [],
+      botSpeech: ""
 
     }
   }
@@ -39,7 +38,11 @@ class App extends Component {
     this.getEntities(finalTranscript);
     const newUtterances = this.state.utterances.map(utterance => utterance);
     newUtterances.push(finalTranscript);
-    this.setState({utterances: newUtterances});
+    this.setState({
+      start: false,
+      stop: true,
+      utterances: newUtterances
+    });
   }
 
   getEntities = (utterance) => {
@@ -58,14 +61,31 @@ class App extends Component {
   }
 
   dialogflowToHgraph = (responseJson) => {
-
     const parameters = responseJson.result.parameters;
+    const input = responseJson.result.resolvedQuery;
+    const map = new Map();
+
+    map.set("alcoholUse","How many alcoholic beverages have you had this week?");
+    map.set("nicotineUse","How many cigarettes have you had this week?");
+    map.set("exercise","How many hours do you exercise per week?");
+    map.set("weight", "How much do you weigh?");
+    map.set("sleep","How many hours of sleep do you get per night?");
+    map.set("waistCircumference", "What's the circumference of your waist?");
+    map.set("happiness", "Rate your happiness on a scale of 1 to 10");
+    map.set("glucose", "What's your glucose?");
+    map.set("ldl", "What is your LDL?");
+    map.set("hdl", "What is your HDL?");
+    map.set("bloodPressureDialstolic", "What's your diastolic blood pressure?");
+    map.set("bloodPressureSystolic", "What's your systolic blood pressure?");
+    map.set("painLevel", "Rate your pain on a scale of 1 to 10");
 
     const keys = Object.keys(parameters);
     const values = Object.values(parameters);
-    let newArray = [];
-
+    var newArray = [];
+    var speech = "";
+    var msg;
     for (var i = 0; i < keys.length; i++) {
+      console.log(keys[i]);
       if (values[i] !== "") {
         newArray.push({
           metric: keys[i].toString(),
@@ -79,8 +99,33 @@ class App extends Component {
       return convertedObj;
     });
     var finalArray = this.state.patientData.concat(newArray);
+    // DOES ACCOUNT FOR REPEATS BUT IT GETS ERRORS FOR UNDERSTANDING VALUES - DIALOGFLOW SIDE - TRAIN IT MORE??
+    // NEED TO ADD CASE FOR WHEN ITS GIVEN INFO IT DOESNT KNOW - IF IT DOESNT KNOW IT CURRENTLY REPEATS
+   var result = finalArray.map(a => a.id);
+    var shouldGetNew = true;
+
+    if (finalArray.length < keys.length) {
+      for(var j = 0; j < keys.length; j++) {
+        if (shouldGetNew && !result.includes(keys[j])) {
+          shouldGetNew = false;
+          this.setState({
+            start: true,
+            stop: false
+          }, () => {
+            speech = map.get(keys[j]);
+            msg = new SpeechSynthesisUtterance(speech);
+            console.log(speech);
+            window.speechSynthesis.speak(msg);
+          });
+        }
+      }
+    }
+
     const copiedArrayFromState = this.state.patientData.map(d => d);
     // for each item in the response
+
+    //var shouldGetNew = true;
+    //var result;
     newArray.map(item => {
       // check if the item exists already in the existing state array
       var found = copiedArrayFromState.findIndex(d => d.id === item.id);
@@ -89,13 +134,50 @@ class App extends Component {
         // if it does, just override the value
         copiedArrayFromState[found].value = item.value;
         console.log(copiedArrayFromState);
+
+        /*result = copiedArrayFromState.map(a => a.id);
+        if (copiedArrayFromState.length < keys.length) {
+          for(var j = 0; j < keys.length; j++) {
+            if (shouldGetNew && !result.includes(keys[j])) {
+              shouldGetNew = false;
+              this.setState({
+                start: true,
+                stop: false
+              }, () => {
+                speech = map.get(keys[j]);
+                msg = new SpeechSynthesisUtterance(speech);
+                console.log(speech);
+                window.speechSynthesis.speak(msg);
+              });
+            }
+          }
+        }*/
         this.setState({patientData: copiedArrayFromState});
       } else {
         // if not, add it as before
+
+        /*result = finalArray.map(a => a.id);
+        if (finalArray.length < keys.length) {
+          for(var k = 0; k < keys.length; k++) {
+            if (shouldGetNew && !result.includes(keys[k])) {
+              shouldGetNew = false;
+              this.setState({
+                start: true,
+                stop: false
+              }, () => {
+                speech = map.get(keys[k]);
+                msg = new SpeechSynthesisUtterance(speech);
+                console.log(speech);
+                window.speechSynthesis.speak(msg);
+              });
+            }
+          }
+        }*/
         this.setState({patientData: finalArray});
       }
     });
   }
+
   render () {
     return (
       <div>
@@ -110,6 +192,7 @@ class App extends Component {
              stop={this.state.stop}
            />
          )}
+
          <Hgraph data={this.state.patientData}/>
       </div>
     )
