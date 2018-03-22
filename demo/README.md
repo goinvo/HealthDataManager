@@ -11,6 +11,8 @@ Currently, this version of hGraph, intakes voice queries, parses the returned JS
 
 A demo of the current application can be accessed [here] TBD. 
 
+ <img src="images/hgraph_react.png" alt="IMAGE ALT TEXT HERE" width="340" height="280" border="10" />
+ 
 ## How to Use
 Download or clone the demo folder. In your terminal, run ```npm install ``` or ```yarn add``` in the hgraph directory. Then run ```npm start``` or ```yarn start```. 
 
