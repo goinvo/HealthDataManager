@@ -19,9 +19,9 @@ IMPORTANT: code must be run on a https server to allow microphone access. Localh
 - HIPAA compliant (using TrueVault)
 
 ## Core Contributors
-Founders/Designers: [GoInvo](http://www.goinvo.com/), [hello@goinvo.com](mailto:hello@goinvo.com)
+[GoInvo](http://www.goinvo.com/), [hello@goinvo.com](mailto:hello@goinvo.com)
 
-We believe that healthcare should be intuitive and accessible. Contact us with your questions and comments.
+Healthcare is too importnat to be closed. And it needs to be intuitive and accessible. Contact us with your questions and comments.
 
 ## License
 Health Data Manager is [Apache 2.0](https://github.com/goinvo/HealthDataManager/blob/master/LICENSE) licensed.
