@@ -1,3 +1,6 @@
+# HealthDataManager
+This is an application that intakes elements of patient information through a voice user interface. These data elements are then configured into [Standard Health Record](http://standardhealthrecord.org) format. The data is displayed visually for predicting or managing health. The end product will be a tool for both patients and clinicians to easily record their health progress without the need for transcription. The visual representation will allow for a clear understanding of the patients health and progress so that clinicians can spend more time focusing on their patient and less time swamped with data. 
+
 ## hGraph React Demo
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
