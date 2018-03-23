@@ -9,7 +9,7 @@ This is an implementation of hGraph in React. Through React, hGraph does not nee
 ## Current Work
 Currently, this version of hGraph, intakes voice queries, parses the returned JSON, and then adds/updates health datapoints. This is done using [Dialogflow](https://dialogflow.com) to parse speech utterances.
 
-A demo of the current application can be accessed [here] TBD. 
+A demo of the current application can be accessed [here](https://goinvo.github.io/HealthDataManager/). 
 
  <img src="images/hgraph_react.png" alt="IMAGE ALT TEXT HERE" width="340" height="280" border="10" />
  
