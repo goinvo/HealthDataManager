@@ -170,6 +170,8 @@ class App extends Component {
   }
 
   render () {
+    const opening = new SpeechSynthesisUtterance("Welcome to hGraph! I am an application to visualize your personal health data. Tell me a little about yourself. How much do you weigh?");
+    window.speechSynthesis.speak(opening);
     const pointRadius = this.state.chartWidth > 300 ? 10 : 5;
     const fontSize = this.state.chartWidth > 300 ? 16 : 10;
     return (
