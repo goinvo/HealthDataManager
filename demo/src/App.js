@@ -15,9 +15,17 @@ class App extends Component {
       stop: false,
       utterances: [],
       patientData: [],
-      botSpeech: ""
+      botSpeech: "",
+      isToggleOn: true
 
     }
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState(prevState => ({
+      isToggleOn: !prevState.isToggleOn
+    }));
   }
 
   addPatientDataElement = (element) => {
@@ -42,6 +50,7 @@ class App extends Component {
       start: false,
       stop: true,
       utterances: newUtterances
+
     });
   }
 
@@ -106,7 +115,7 @@ class App extends Component {
 
     if (finalArray.length < keys.length) {
       for(var j = 0; j < keys.length; j++) {
-        if (shouldGetNew && !result.includes(keys[j])) {
+        if ( shouldGetNew && !result.includes(keys[j]) && this.state.isToggleOn ===true) {
           shouldGetNew = false;
           this.setState({
             start: true,
@@ -115,6 +124,7 @@ class App extends Component {
             speech = map.get(keys[j]);
             msg = new SpeechSynthesisUtterance(speech);
             console.log(speech);
+            console.log(this.isToggleOn);
             window.speechSynthesis.speak(msg);
           });
         }
@@ -124,8 +134,6 @@ class App extends Component {
     const copiedArrayFromState = this.state.patientData.map(d => d);
     // for each item in the response
 
-    //var shouldGetNew = true;
-    //var result;
     newArray.map(item => {
       // check if the item exists already in the existing state array
       var found = copiedArrayFromState.findIndex(d => d.id === item.id);
@@ -135,44 +143,9 @@ class App extends Component {
         copiedArrayFromState[found].value = item.value;
         console.log(copiedArrayFromState);
 
-        /*result = copiedArrayFromState.map(a => a.id);
-        if (copiedArrayFromState.length < keys.length) {
-          for(var j = 0; j < keys.length; j++) {
-            if (shouldGetNew && !result.includes(keys[j])) {
-              shouldGetNew = false;
-              this.setState({
-                start: true,
-                stop: false
-              }, () => {
-                speech = map.get(keys[j]);
-                msg = new SpeechSynthesisUtterance(speech);
-                console.log(speech);
-                window.speechSynthesis.speak(msg);
-              });
-            }
-          }
-        }*/
         this.setState({patientData: copiedArrayFromState});
       } else {
         // if not, add it as before
-
-        /*result = finalArray.map(a => a.id);
-        if (finalArray.length < keys.length) {
-          for(var k = 0; k < keys.length; k++) {
-            if (shouldGetNew && !result.includes(keys[k])) {
-              shouldGetNew = false;
-              this.setState({
-                start: true,
-                stop: false
-              }, () => {
-                speech = map.get(keys[k]);
-                msg = new SpeechSynthesisUtterance(speech);
-                console.log(speech);
-                window.speechSynthesis.speak(msg);
-              });
-            }
-          }
-        }*/
         this.setState({patientData: finalArray});
       }
     });
@@ -181,6 +154,9 @@ class App extends Component {
   render () {
     return (
       <div>
+        <button onClick={this.handleClick}>
+        {this.state.isToggleOn ? 'Patient' : 'Clinician'}
+        </button>
         <button onClick={() => this.setState({ start: true })}>start</button>
         <button onClick={() => this.setState({ stop: true })}>stop</button>
         {this.state.start && (
