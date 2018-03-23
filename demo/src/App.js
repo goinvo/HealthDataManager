@@ -16,10 +16,28 @@ class App extends Component {
       utterances: [],
       patientData: [],
       botSpeech: "",
-      isToggleOn: true
+      isToggleOn: true,
+      chartWidth: this.getChartWidth()
 
     }
     this.handleClick = this.handleClick.bind(this);
+  }
+
+  componentDidMount = () => {
+    window.addEventListener("resize", this.setChartWidth);
+  }
+
+  componentWillUnmount = () => {
+    window.removeEventListener("resize", this.setChartWidth);
+  }
+
+  getChartWidth = () => {
+    const sizeBasedOnWindow = window.innerWidth*.75;
+    return sizeBasedOnWindow < 600 ? sizeBasedOnWindow : 600;
+  }
+
+  setChartWidth = () => {
+    this.setState({chartWidth: this.getChartWidth()});
   }
 
   handleClick() {
@@ -152,6 +170,8 @@ class App extends Component {
   }
 
   render () {
+    const pointRadius = this.state.chartWidth > 300 ? 10 : 5;
+    const fontSize = this.state.chartWidth > 300 ? 16 : 10;
     return (
       <div>
         <button onClick={this.handleClick}>
@@ -169,7 +189,13 @@ class App extends Component {
            />
          )}
 
-         <Hgraph data={this.state.patientData}/>
+         <Hgraph
+           data={this.state.patientData}
+           width={this.state.chartWidth}
+           height={this.state.chartWidth}
+           pointRadius={pointRadius}
+           fontSize = {fontSize}
+         />
       </div>
     )
   }
