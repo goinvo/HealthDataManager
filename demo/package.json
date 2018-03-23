@@ -2,14 +2,19 @@
   "name": "demo",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://goinvo.github.io/HealthDataManager",
   "dependencies": {
     "api-ai-javascript": "^2.0.0-beta.21",
+    "gh-pages": "^1.1.0",
+    "hgraph-react": "^0.0.6",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-scripts": "1.1.1",
     "react-voice-components": "^1.0.0"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
