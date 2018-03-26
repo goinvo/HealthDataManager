@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import VoiceRecognition from './VoiceRecognition';
 import './App.css';
 import Hgraph, { hGraphConvert, calculateHealthScore } from 'hgraph-react';
+import SkyLight from 'react-skylight';
 const accessToken ="745b2a6d68e24e1a93a92cf26643b07b";
 const baseUrl = "https://api.dialogflow.com/v1/";
 
@@ -10,18 +11,22 @@ class App extends Component {
   constructor (props) {
     super(props);
 
+
     this.state = {
       start: false,
       stop: false,
       utterances: [],
       patientData: [],
-      botSpeech: "",
+      botSpeech: true,
       isToggleOn: true,
       chartWidth: this.getChartWidth()
+
 
     }
     this.handleClick = this.handleClick.bind(this);
   }
+
+
 
   componentDidMount = () => {
     window.addEventListener("resize", this.setChartWidth);
@@ -145,6 +150,8 @@ class App extends Component {
             console.log(this.isToggleOn);
             window.speechSynthesis.speak(msg);
           });
+        } else {
+          this.state.botSpeech = false;
         }
       }
     }
@@ -170,20 +177,62 @@ class App extends Component {
   }
 
   render () {
-    const opening = new SpeechSynthesisUtterance("Welcome to hGraph! I am an application to visualize your personal health data. Tell me a little about yourself. How much do you weigh?");
-    window.speechSynthesis.speak(opening);
+    var myBigGreenDialog = {
+          backgroundColor: '#00897B',
+          color: '#ffffff',
+          width: '70%',
+          height: '600px',
+          marginTop: '-300px',
+          marginLeft: '-35%',
+        };
+    var botVoice = "";
+    if (this.state.botSpeech === true) {
+      this.state.botSpeech = undefined;
+      botVoice = new SpeechSynthesisUtterance("Welcome to hGraph! I am an application to visualize your personal health data. I'll be asking you a few questions about your health. First, how much do you weigh?");
+    } else if (this.state.botSpeech === false){
+      botVoice = new SpeechSynthesisUtterance("That's it for now. I'll talk to you again soon.");
+    } else {
+      botVoice = new SpeechSynthesisUtterance("");
+    }
+    window.speechSynthesis.speak(botVoice);
     const pointRadius = this.state.chartWidth > 300 ? 10 : 5;
     const fontSize = this.state.chartWidth > 300 ? 16 : 10;
+
     return (
+
       <div>
-        <button onClick={this.handleClick}>
-        {this.state.isToggleOn ? 'Patient' : 'Clinician'}
-        </button>
         <button onClick={() => this.setState({ start: true })}>start</button>
         <button onClick={() => this.setState({ stop: true })}>stop</button>
+        <section>
+          <button onClick={() => this.customDialog.show()}>Help</button>
+        </section>
+        <SkyLight dialogStyles={myBigGreenDialog} hideOnOverlayClicked ref={ref => this.customDialog = ref} title="What is this app?">
+           hGraph is voice interactive app used to record patient health data. It currently takes 13
+           health data points:
+
+               <ul>Your waist circumference</ul>
+               <ul>the number of alcoholic drinks consumed per week</ul>
+               <ul>the average number of hours of sleep you get</ul>
+               <ul>your weight</ul>
+               <ul>the number of cigarettes you smoke</ul>
+               <ul>your happiness on a scale of 1-10</ul>
+               <ul>your glucose levels</ul>
+               <ul>your LDL</ul>
+               <ul>your HDL</ul>
+               <ul>your diastolic blood pressure</ul>
+               <ul>you systolic blood pressure</ul>
+               <ul>your pain on a scale of 1-10</ul>
+               <ul>the average number of hours you exercise per week </ul>
+
+        </SkyLight>
+
+      <p></p>
+        Current Mode: <button onClick={this.handleClick}>
+        {this.state.isToggleOn ? 'Patient' : 'Clinician'}
+        </button>
         {this.state.start && (
            <VoiceRecognition
-             onEnd={this.onEnd}
+             onEnd={this.onEnd}v
              onResult={this.onResult}
              continuous={true}
              lang="en-US"
