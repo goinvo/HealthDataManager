@@ -3,6 +3,7 @@ import VoiceRecognition from './VoiceRecognition';
 import './App.css';
 import Hgraph, { hGraphConvert, calculateHealthScore } from 'hgraph-react';
 import SkyLight from 'react-skylight';
+import Button from 'muicss/lib/react/button';
 const accessToken ="745b2a6d68e24e1a93a92cf26643b07b";
 const baseUrl = "https://api.dialogflow.com/v1/";
 
@@ -19,11 +20,14 @@ class App extends Component {
       patientData: [],
       botSpeech: true,
       isToggleOn: true,
+      isToggleOnStart: true,
+      botVoice: "",
       chartWidth: this.getChartWidth()
 
 
     }
     this.handleClick = this.handleClick.bind(this);
+    this.handleClickStart = this.handleClickStart.bind(this);
   }
 
 
@@ -48,6 +52,11 @@ class App extends Component {
   handleClick() {
     this.setState(prevState => ({
       isToggleOn: !prevState.isToggleOn
+    }));
+  }
+  handleClickStart() {
+    this.setState(prevStateStart => ({
+      isToggleOnStart: !prevStateStart.isToggleOnStart
     }));
   }
 
@@ -185,24 +194,26 @@ class App extends Component {
           marginTop: '-300px',
           marginLeft: '-35%',
         };
-    var botVoice = "";
     if (this.state.botSpeech === true) {
       this.state.botSpeech = undefined;
-      botVoice = new SpeechSynthesisUtterance("Welcome to hGraph! I am an application to visualize your personal health data. I'll be asking you a few questions about your health. First, how much do you weigh?");
+      this.state.botVoice = new SpeechSynthesisUtterance("Welcome to hGraph! I am an application to visualize your personal health data. I'll be asking you a few questions about your health. First, how much do you weigh?");
+      console.log(this.state.botVoice);
     } else if (this.state.botSpeech === false){
-      botVoice = new SpeechSynthesisUtterance("That's it for now. I'll talk to you again soon.");
+      this.state.botVoice = new SpeechSynthesisUtterance("That's it for now. I'll talk to you again soon.");
     } else {
-      botVoice = new SpeechSynthesisUtterance("");
+      this.state.botVoice = new SpeechSynthesisUtterance("");
     }
-    window.speechSynthesis.speak(botVoice);
+    window.speechSynthesis.speak(this.state.botVoice);
     const pointRadius = this.state.chartWidth > 300 ? 10 : 5;
     const fontSize = this.state.chartWidth > 300 ? 16 : 10;
 
     return (
 
       <div>
-        <button onClick={() => this.setState({ start: true })}>start</button>
-        <button onClick={() => this.setState({ stop: true })}>stop</button>
+
+      <button onClick={() => this.setState({ start: true })}>start</button>
+      <button onClick={() => this.setState({ stop: true })}>stop</button>
+      <button  onClick={this.handleClickStart} name="speakButton"> {this.state.isToggleOnStart ? 'Start' : 'Stop'} </button>
         <section>
           <button onClick={() => this.customDialog.show()}>Help</button>
         </section>
@@ -247,6 +258,8 @@ class App extends Component {
            pointRadius={pointRadius}
            fontSize = {fontSize}
          />
+
+       <p>{this.state.botVoice.text}</p>
       </div>
     )
   }
