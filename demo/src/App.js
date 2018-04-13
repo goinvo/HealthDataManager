@@ -3,10 +3,11 @@ import VoiceRecognition from './VoiceRecognition';
 import './App.css';
 import Hgraph, { hGraphConvert, calculateHealthScore } from 'hgraph-react';
 import SkyLight from 'react-skylight';
-import Button from 'muicss/lib/react/button';
 const accessToken ="745b2a6d68e24e1a93a92cf26643b07b";
 const baseUrl = "https://api.dialogflow.com/v1/";
 
+const Header = ({title}) => (<header>{title}</header>);
+const Footer = ({title}) => (<footer>{title}</footer>);
 class App extends Component {
 
   constructor (props) {
@@ -186,6 +187,8 @@ class App extends Component {
   }
 
   render () {
+    const {header,footer} = this.props;
+
     var myBigGreenDialog = {
           backgroundColor: '#00897B',
           color: '#ffffff',
@@ -206,16 +209,16 @@ class App extends Component {
     window.speechSynthesis.speak(this.state.botVoice);
     const pointRadius = this.state.chartWidth > 300 ? 10 : 5;
     const fontSize = this.state.chartWidth > 300 ? 16 : 10;
-
+    const margin =  {top: 20, right: this.state.chartWidth*0.2, bottom: this.state.chartWidth*0.5,left: this.state.chartWidth*0.2};
     return (
 
       <div>
-
+        <Header title={header} />
       <button onClick={() => this.setState({ start: true })}>start</button>
       <button onClick={() => this.setState({ stop: true })}>stop</button>
-      <button  onClick={this.handleClickStart} name="speakButton"> {this.state.isToggleOnStart ? 'Start' : 'Stop'} </button>
+      <button id="speakButton" onClick={this.handleClickStart}> {this.state.isToggleOnStart ? 'Start' : 'Stop'} </button>
         <section>
-          <button onClick={() => this.customDialog.show()}>Help</button>
+          <button id="help" onClick={() => this.customDialog.show()}>Help</button>
         </section>
         <SkyLight dialogStyles={myBigGreenDialog} hideOnOverlayClicked ref={ref => this.customDialog = ref} title="What is this app?">
            hGraph is voice interactive app used to record patient health data. It currently takes 13
@@ -238,7 +241,7 @@ class App extends Component {
         </SkyLight>
 
       <p></p>
-        Current Mode: <button onClick={this.handleClick}>
+        <button id="mode" onClick={this.handleClick}>
         {this.state.isToggleOn ? 'Patient' : 'Clinician'}
         </button>
         {this.state.start && (
@@ -250,16 +253,18 @@ class App extends Component {
              stop={this.state.stop}
            />
          )}
-
+         <p class="solid">{this.state.botVoice.text}</p>
          <Hgraph
            data={this.state.patientData}
            width={this.state.chartWidth}
            height={this.state.chartWidth}
            pointRadius={pointRadius}
            fontSize = {fontSize}
+           margin={margin}
          />
 
-       <p>{this.state.botVoice.text}</p>
+
+       <Footer title={footer}/>
       </div>
     )
   }

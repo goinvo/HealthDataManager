@@ -22,10 +22,56 @@
   font-size: large;
 }
 
-.speakButton {
-  position: sticky;
-  position: sticky;
-  bottom: 5px;
+.solid{
+  border-style: solid;
+  border-color: #d0e59e;
+}
+#speakButton {
+  background-color: #d0e59e; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+header {
+  width: 100%;
+  padding: 1rem;
+
+  text-align: center;
+  background: #d0e59e;
+
+  }
+
+footer {
+    width: 100%;
+    padding: 1rem;
+
+    text-align: center;
+    background: #d0e59e;
+}
+
+#mode{
+
+
+}
+
+#help{
+
+
+}
+
+button {
+
 }
 
 @keyframes App-logo-spin {
