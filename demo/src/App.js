@@ -3,6 +3,7 @@ import VoiceRecognition from './VoiceRecognition';
 import './App.css';
 import Hgraph, { hGraphConvert, calculateHealthScore } from 'hgraph-react';
 import SkyLight from 'react-skylight';
+
 const accessToken ="745b2a6d68e24e1a93a92cf26643b07b";
 const baseUrl = "https://api.dialogflow.com/v1/";
 
@@ -22,9 +23,9 @@ class App extends Component {
       botSpeech: true,
       isToggleOn: true,
       isToggleOnStart: true,
-      botVoice: "",
-      chartWidth: this.getChartWidth()
-
+      botVoice: null,
+      chartWidth: this.getChartWidth(),
+      botText: "",
 
     }
     this.handleClick = this.handleClick.bind(this);
@@ -35,6 +36,22 @@ class App extends Component {
 
   componentDidMount = () => {
     window.addEventListener("resize", this.setChartWidth);
+
+    if (this.state.botSpeech) {
+      const botVoice = new SpeechSynthesisUtterance("Welcome to hGraph! I am an application to visualize your personal health data. I'll be asking you a few questions about your health. First, how much do you weigh?");
+      this.setState({
+        botSpeech: false,
+        botVoice,
+        botText: botVoice.text
+      }, () => {
+        window.speechSynthesis.speak(this.state.botVoice);
+      });
+    } else {
+      this.setState({
+        botVoice: null,
+        botText: ""
+      });
+    }
   }
 
   componentWillUnmount = () => {
@@ -59,6 +76,13 @@ class App extends Component {
     this.setState(prevStateStart => ({
       isToggleOnStart: !prevStateStart.isToggleOnStart
     }));
+    if(this.state.isToggleOnStart === true){
+      this.setState({ start: true });
+      this.setState({bgColor: "red"});
+    } else {
+      this.setState({ stop: true });
+      this.setState({bgColor: "#d0e59e"})
+    }
   }
 
   addPatientDataElement = (element) => {
@@ -155,13 +179,19 @@ class App extends Component {
             stop: false
           }, () => {
             speech = map.get(keys[j]);
-            msg = new SpeechSynthesisUtterance(speech);
-            console.log(speech);
-            console.log(this.isToggleOn);
-            window.speechSynthesis.speak(msg);
+            // this.state.botVoice = new SpeechSynthesisUtterance(speech);
+            const botVoice = new SpeechSynthesisUtterance(speech);
+            this.setState({
+              botVoice,
+              botText: botVoice.text
+            }, () => {
+              window.speechSynthesis.speak(this.state.botVoice);
+            });
           });
         } else {
-          this.state.botSpeech = false;
+          this.setState({
+            botSpeech: false
+          });
         }
       }
     }
@@ -197,26 +227,21 @@ class App extends Component {
           marginTop: '-300px',
           marginLeft: '-35%',
         };
-    if (this.state.botSpeech === true) {
-      this.state.botSpeech = undefined;
-      this.state.botVoice = new SpeechSynthesisUtterance("Welcome to hGraph! I am an application to visualize your personal health data. I'll be asking you a few questions about your health. First, how much do you weigh?");
-      console.log(this.state.botVoice);
-    } else if (this.state.botSpeech === false){
+
+    /* else if (this.state.botSpeech === false){
       this.state.botVoice = new SpeechSynthesisUtterance("That's it for now. I'll talk to you again soon.");
-    } else {
-      this.state.botVoice = new SpeechSynthesisUtterance("");
-    }
-    window.speechSynthesis.speak(this.state.botVoice);
+    } */
+
     const pointRadius = this.state.chartWidth > 300 ? 10 : 5;
     const fontSize = this.state.chartWidth > 300 ? 16 : 10;
-    const margin =  {top: 20, right: this.state.chartWidth*0.2, bottom: this.state.chartWidth*0.5,left: this.state.chartWidth*0.2};
+    const margin =  {top: 40, right: this.state.chartWidth*0.2, bottom: this.state.chartWidth*0.5,left: this.state.chartWidth*0.2};
+
+    
     return (
 
       <div>
         <Header title={header} />
-      <button onClick={() => this.setState({ start: true })}>start</button>
-      <button onClick={() => this.setState({ stop: true })}>stop</button>
-      <button id="speakButton" onClick={this.handleClickStart}> {this.state.isToggleOnStart ? 'Start' : 'Stop'} </button>
+      <button id="speakButton" onClick={this.handleClickStart} style={{backgroundColor:this.state.bgColor}}> {this.state.isToggleOnStart ? 'Start' : 'Stop'} </button>
         <section>
           <button id="help" onClick={() => this.customDialog.show()}>Help</button>
         </section>
@@ -253,7 +278,7 @@ class App extends Component {
              stop={this.state.stop}
            />
          )}
-         <p class="solid">{this.state.botVoice.text}</p>
+         <p className="solid">{this.state.botText}</p>
          <Hgraph
            data={this.state.patientData}
            width={this.state.chartWidth}
