@@ -30,6 +30,8 @@ class App extends Component {
     }
     this.handleClick = this.handleClick.bind(this);
     this.handleClickStart = this.handleClickStart.bind(this);
+
+    console.log("WHAT THE FUCK");
   }
 
 
@@ -73,15 +75,16 @@ class App extends Component {
     }));
   }
   handleClickStart() {
+    console.log("Clicked on speak button");
     this.setState(prevStateStart => ({
       isToggleOnStart: !prevStateStart.isToggleOnStart
     }));
     if(this.state.isToggleOnStart === true){
       this.setState({ start: true });
-      this.setState({bgColor: "red"});
+      this.setState({bgColor: "#cc4d4d"});
     } else {
       this.setState({ stop: true });
-      this.setState({bgColor: "#d0e59e"})
+      this.setState({bgColor: "#97be8c"})
     }
   }
 
@@ -220,8 +223,8 @@ class App extends Component {
     const {header,footer} = this.props;
 
     var myBigGreenDialog = {
-          backgroundColor: '#00897B',
-          color: '#ffffff',
+          backgroundColor: '#eeeeee',
+          color: 'black',
           width: '70%',
           height: '600px',
           marginTop: '-300px',
@@ -235,8 +238,6 @@ class App extends Component {
     const pointRadius = this.state.chartWidth > 300 ? 10 : 5;
     const fontSize = this.state.chartWidth > 300 ? 16 : 10;
     const margin =  {top: 40, right: this.state.chartWidth*0.2, bottom: this.state.chartWidth*0.5,left: this.state.chartWidth*0.2};
-
-    
     return (
 
       <div>
@@ -262,6 +263,7 @@ class App extends Component {
                <ul>you systolic blood pressure</ul>
                <ul>your pain on a scale of 1-10</ul>
                <ul>the average number of hours you exercise per week </ul>
+               <p></p>
 
         </SkyLight>
 
