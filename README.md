@@ -19,6 +19,8 @@ The current React code is located in the demo file and can be run the same way.
 
 IMPORTANT: code must be run on a https server to allow microphone access. Localhost also works but just dragging the HTML file into a browser does not. This due to how security access to microphones are allowed.
 
+IMPORTANT: This application uses the Web Speech API for speech recognition. This API only runs on Chrome and Firefox. Other browsers are not supported at this time. 
+
 ## Future Goals 
 - have the interface written in React for better interaction and animation
 - currently the SHR format is hardcoded, I would like to find a way to more easily generate SHR JSON
