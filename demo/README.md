@@ -18,6 +18,8 @@ Download or clone the demo folder. In your terminal, run ```npm install ``` or `
 
 IMPORTANT: code must be run on a https server to allow microphone access. Localhost also works but just dragging the HTML file into a browser does not. This due to how security access to microphones are allowed.
 
+IMPORTANT: This application uses the Web Speech API for speech recognition. This API only runs on Chrome and Firefox. Other browsers are not supported at this time. 
+
 ## Future Goals 
 - produce SHR JSON
 - 1 model/algorithm to help with predicting or managing my health.
