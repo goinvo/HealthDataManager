@@ -3,7 +3,8 @@ import VoiceRecognition from './VoiceRecognition';
 import './App.css';
 import Hgraph, { hGraphConvert, calculateHealthScore } from 'hgraph-react';
 import SkyLight from 'react-skylight';
-
+import MetaTags from 'react-meta-tags';
+import '../node_modules/font-awesome/css/font-awesome.min.css';
 const accessToken ="745b2a6d68e24e1a93a92cf26643b07b";
 const baseUrl = "https://api.dialogflow.com/v1/";
 
@@ -241,8 +242,13 @@ class App extends Component {
     return (
 
       <div>
+          <MetaTags>
+            <title>hGraph React</title>
+
+            <meta id="font" property="og:font" content='http://fonts.googleapis.com/css?family=Vollkorn' />
+          </MetaTags>
         <Header title={header} />
-      <button id="speakButton" onClick={this.handleClickStart} style={{backgroundColor:this.state.bgColor}}> {this.state.isToggleOnStart ? 'Start' : 'Stop'} </button>
+      <button className="fa fa-microphone" id="speakButton" onClick={this.handleClickStart} style={{backgroundColor:this.state.bgColor}}> {this.state.isToggleOnStart ? 'Start' : 'Stop'} </button>
         <section>
           <button id="help" onClick={() => this.customDialog.show()}>Help</button>
         </section>
@@ -268,6 +274,7 @@ class App extends Component {
         </SkyLight>
 
       <p></p>
+  
         <button id="mode" onClick={this.handleClick}>
         {this.state.isToggleOn ? 'Patient' : 'Clinician'}
         </button>

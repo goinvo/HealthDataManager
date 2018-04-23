@@ -5,11 +5,13 @@
   "homepage": "https://goinvo.github.io/HealthDataManager",
   "dependencies": {
     "api-ai-javascript": "^2.0.0-beta.21",
+    "font-awesome": "^4.7.0",
     "gh-pages": "^1.1.0",
     "hgraph-react": "^0.0.6",
     "muicss": "^0.9.39-rc1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-meta-tags": "^0.3.0",
     "react-scripts": "1.1.1",
     "react-skylight": "^0.5.0",
     "react-vis": "^1.9.2",
