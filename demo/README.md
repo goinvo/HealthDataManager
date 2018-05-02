@@ -13,6 +13,8 @@ A demo of the current application can be accessed [here](https://goinvo.github.i
 <img src="images/ui-proto.png" alt="app interface" width="340" height="540" border="10" />
  <img src="images/hgraph_react.png" alt="hgraph demo" width="500" height="430" border="10" />
  
+A compatable Alexa skill is also being developed. The files necessary for building the skills app can be found in the Alexa folder. Once a skill has been developed, we will link to it here.
+ 
 ## How to Use
 Download or clone the demo folder. In your terminal, run ```npm install ``` or ```yarn add``` in the hgraph directory. Then run ```npm start``` or ```yarn start```. 
 
