@@ -10,7 +10,7 @@ This is an image of the current prototype interface. <a href="https://youtu.be/Q
 
  <img src="images/hgraph.png" alt="IMAGE ALT TEXT HERE" width="340" height="280" border="10" />
 
-
+An compatable Alexa skill is also being developed. The files necessary for building the skills app can be found in the Alexa folder. Once a skill has been developed, we will link to it here.
 
 ## How to Use
 Download or clone the hgraph file. In your terminal, run ```npm install ``` or ```yarn add``` in the hgraph directory. Then run ```npm start``` or ```yarn start```. 
