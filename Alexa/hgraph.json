@@ -1,0 +1,185 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "h graph",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": [
+                        "cancel"
+                    ]
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": [
+                        "help"
+                    ]
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": [
+                        "stop"
+                    ]
+                },
+                {
+                    "name": "AMAZON.YesIntent",
+                    "samples": [
+                        "yes"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NoIntent",
+                    "samples": [
+                        "no"
+                    ]
+                },
+                {
+                    "name": "getHealthData",
+                    "slots": [
+                        {
+                            "name": "numberslot",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "healthdata",
+                            "type": "datatype"
+                        }
+                    ],
+                    "samples": [
+                        "i am {numberslot} {healthdata}",
+                        "i drink {numberslot} {healthdata} per week",
+                        "i {healthdata} for {numberslot} hours a week",
+                        "i {healthdata} for {numberslot} hours per week",
+                        "i {healthdata} for {numberslot} hours",
+                        "i get {numberslot} hours of {healthdata}",
+                        "i had {numberslot} {healthdata}",
+                        "i rate my {healthdata} as {numberslot}",
+                        "i smoke {numberslot} cigarettes",
+                        "i smoked {numberslot} {healthdata}",
+                        "i ve had {numberslot} {healthdata}",
+                        "i ve had {numberslot} {healthdata} this week",
+                        "i ve {numberslot} {healthdata} this week",
+                        "i weigh {numberslot} {healthdata}",
+                        "my {healthdata} is {numberslot}",
+                        "my {healthdata} level is {numberslot}",
+                        "my {healthdata} is {numberslot} inches"
+                    ]
+                },
+                {
+                    "name": "getUtterance",
+                    "slots": [
+                        {
+                            "name": "utterance",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "i {utterance}",
+                        "i feel {utterance}"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "datatype",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "sleep",
+                                "synonyms": [
+                                    "slept"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "waist",
+                                "synonyms": [
+                                    "waist circumference"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "pain"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "happiness"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "drinks",
+                                "synonyms": [
+                                    "alcoholic beverage"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "cigarettes"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "exercise",
+                                "synonyms": [
+                                    "ran",
+                                    "run"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "weight",
+                                "synonyms": [
+                                    "pounds"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "getHealthData",
+                    "confirmationRequired": true,
+                    "prompts": {
+                        "confirmation": "Confirm.Intent.681123657876"
+                    },
+                    "slots": [
+                        {
+                            "name": "numberslot",
+                            "type": "AMAZON.NUMBER",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        },
+                        {
+                            "name": "healthdata",
+                            "type": "datatype",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        }
+                    ]
+                }
+            ]
+        },
+        "prompts": [
+            {
+                "id": "Confirm.Intent.681123657876",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Ok, anything else"
+                    }
+                ]
+            }
+        ]
+    }
+}
