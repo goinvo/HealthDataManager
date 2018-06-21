@@ -1,17 +1,8 @@
-# Actions on Google: Codelabs
-
-These samples serve as the completed source code for
-[Actions on Google codelabs](https://codelabs.developers.google.com/?cat=Assistant).
-The `level1-complete` directory should be used as a reference for the
-Level 1 codelab, and as a starting point for the Level 2 codelab. The
-`level2-complete` directory can be used as a reference for the Level 2 codelab.
+# hGraph Action on the Google Assistant
 
 ## Setup Instructions
-
-For detailed instructions on using this code, refer to the
-[Actions on Google codelabs](https://codelabs.developers.google.com/?cat=Assistant),
-Level 1 and 2. Below are steps to deploy the code for either directory
-(i.e. `level1-complete` or `level2-complete`).
+There are a lot of steps and it's easy to make errors. I built the app referencing the Google codelab which can be found [here](https://codelabs.developers.google.com/codelabs/actions-2/index.html?index=..%2F..%2Findex#0).
+I recommend going through the codelab to get a sense of the Actions development environment. 
 
 ### Steps
 
@@ -32,21 +23,13 @@ Level 1 and 2. Below are steps to deploy the code for either directory
 
 For more detailed information on deployment, see the [documentation](https://developers.google.com/actions/dialogflow/deploy-fulfillment).
 
-
-
-## References and How to report bugs
-* Actions on Google documentation: [https://developers.google.com/actions/](https://developers.google.com/actions/).
-* If you find any issues, please open a bug here on GitHub.
-* Questions are answered on [StackOverflow](https://stackoverflow.com/questions/tagged/actions-on-google).
-
-## How to make contributions?
-Please read and follow the steps in the [CONTRIBUTING.md](CONTRIBUTING.md).
+## Next Steps
+Currently, the app doesn't do anything with the inserted health data. I would like the data to be passed to hGraph via JSON so that an automatic hGraph can be produced with the user's data. 
+The basicCard that makes up the Actions images must have a static image from a URL. Ideally, I'd like the image to be an actual screen shot of the resulting hGraph for the user to see. 
+There should also be patient profiles so that the user can see a history of their health and see multiple hGraphs from past uses.
 
 ## License
 See [LICENSE](LICENSE).
 
 ## Terms
 Your use of this sample is subject to, and by using or downloading the sample files you agree to comply with, the [Google APIs Terms of Service](https://developers.google.com/terms/).
-
-## Google+
-Actions on Google Developers Community on Google+ [https://g.co/actionsdev](https://g.co/actionsdev).
