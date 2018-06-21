@@ -4,15 +4,23 @@ This is an application that intakes ~50 elements of patient information through 
 ## Current Work
 Currently, this project has been adapt to be used with hGraph [http://hgraph.org/], a data visualization tool for patient health. Voice data is transcribed and parsed using [DialogFlow](https://dialogflow.com) which returns a JSON. The JSON is then parsed for elements of interest and updates the data for the graph. 
 
-This is an image of the current prototype interface. <a href="https://youtu.be/Q_3ly1Erp9o">Here</a> is a video demo of the application.
+### A current demo of a hGraph VUI built in React can be found in the 'demo' folder.
+### The modified code for the original hGraph VUI can be found in the 'hGraph' folder.
+### A demo of the hGraph Amazon Alexa Skills can be found in the 'Alexa' folder.
+### A demo of the hGraph Google Assitant Action can be found in the 'Assistant-codelabs-nodejs' folder.
+
+
+
+This is an image of the original hGraph VUI prototype interface. <a href="https://youtu.be/Q_3ly1Erp9o">Here</a> is a video demo of the application.
 
 
 
  <img src="images/hgraph.png" alt="IMAGE ALT TEXT HERE" width="340" height="280" border="10" />
 
-A compatable Alexa skill is also being developed. The files necessary for building the skills app can be found in the Alexa folder. Once a skill has been developed, we will link to it here.
 
-## How to Use
+## How to Use (for the original hGraph VUI)
+(How to run the other hGraph demos can be found in their respective folders.)
+
 Download or clone the hgraph file. In your terminal, run ```npm install ``` or ```yarn add``` in the hgraph directory. Then run ```npm start``` or ```yarn start```. 
 
 The current React code is located in the demo file and can be run the same way.
