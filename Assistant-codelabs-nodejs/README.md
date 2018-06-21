@@ -1,4 +1,7 @@
 # hGraph Action on the Google Assistant
+This is a demo of a hGraph Action for the Google Assistant. The objective is for the Assistant to collect user information and pass it on to hGraph so that users can have a visual representation of their health data.
+
+A video demo of the application can be seen [here](https://youtu.be/72SYOisLqDA).
 
 ## Setup Instructions
 There are a lot of steps and it's easy to make errors. I built the app referencing the Google codelab which can be found [here](https://codelabs.developers.google.com/codelabs/actions-2/index.html?index=..%2F..%2Findex#0).
